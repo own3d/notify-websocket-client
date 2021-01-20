@@ -14,25 +14,28 @@ npm run watch
 ## Example
 
 ```javascript
-import Echo from "laravel-echo"
+import Echo from "laravel-echo";
 
 window.Pusher = require('pusher-js');
 
 window.Echo = new Echo({
     broadcaster: 'pusher',
     key: 'eyvet88xc7py4smk',
-    wsHost: 'pusher.notifications-backend.own3d.tv',
-    wsPort: 443,
-    forceTLS: false,
-    disableStats: true,
+    wsHost: 'notifications-backend.own3d.tv',
+    wsPort: 6001,
+    wssHost: 'notifications-backend.own3d.tv',
+    wssPort: 443,
+    forceTLS: true,
+    enableStats: false,
+    enabledTransports: ['ws', 'wss'],
 });
 
 window.Echo
-    .channel(`users.1`) // this must be a own3d-id user id. 
+    .channel(`users.1`)
     .listen('ActivityCreated', (event) => {
-        console.log(event); // this will be fired if the user receives a event.
+        console.log(event);
     })
     .listen('ConfigsUpdated', (event) => {
-        console.log(event); // this will be fired if the users updates it's alert config.
+        console.log(event);
     });
 ```
