@@ -6232,24 +6232,6 @@ window.Echo.channel("users.1").listen('ActivityCreated', function (event) {
   console.log(event);
 });
 
-Pusher.log = function (msg) {
-  console.log(msg);
-};
-
-window.Echo.connector.pusher.connection.bind('connected', function () {
-  console.log('disconnected', 'do nothing');
-});
-window.Echo.connector.pusher.connection.bind('disconnected', function () {
-  console.log('disconnected', 'do something');
-});
-window.Echo.connector.pusher.connection.bind('error', function (error) {
-  console.error('connection error', error);
-});
-window.Echo.connector.pusher.connection.bind('state_change', function (states) {
-  // states = {previous: 'oldState', current: 'newState'}
-  console.log("Channels current state is " + states.current);
-});
-
 /***/ }),
 
 /***/ 0:
