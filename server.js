@@ -4,6 +4,11 @@ const bodyParser = require('body-parser');
 
 app.use(bodyParser.json());
 
+// Health check
+app.head('/health', function (req, res) {
+    res.sendStatus(200);
+});
+
 app.post('/send', (req, res) => {
     console.log(req.body);      // your JSON
     io.emit('hi', req.body);

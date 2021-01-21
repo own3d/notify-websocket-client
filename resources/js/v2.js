@@ -1,6 +1,6 @@
 import { io } from 'socket.io-client';
 
-const socket = io('http://127.0.0.1:3000');
+const socket = io('https://socket-hel1-1.own3d.dev');
 
 socket.on("connect", () => {
     console.log(socket.id); // x8WIv7-mJelg7on_ALbx
