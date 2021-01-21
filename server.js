@@ -21,10 +21,9 @@ const server = app.listen(3000, () => {
 
 const io = require('socket.io')(server, {
     cors: {
-        origin: "*",
-        methods: ["GET", "POST"],
-        allowedHeaders: ["my-custom-header"],
-        credentials: true
+        origin: true,
+        credentials: true,
+        methods: ["GET", "POST"]
     }
 });
 
