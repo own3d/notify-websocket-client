@@ -37,6 +37,11 @@ const io = require('socket.io')(server, {
 const redis = require('socket.io-redis');
 io.adapter(redis({host: '10.1.0.2', port: 6379}));
 
+// handle incoming connections from clients
 io.on('connection', (socket) => {
     console.log('a user connected');
+    // once a client has connected, we expect to get a ping from them saying what room they want to join
+    socket.on('room', function(room) {
+        socket.join(room);
+    });
 });
