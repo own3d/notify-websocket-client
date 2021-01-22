@@ -18,7 +18,7 @@ app.head('/health', function (req, res) {
 
 app.post('/emit', auth, (req, res) => {
     console.log(req.body);      // your JSON
-    io.emit(res.body.event, req.body.data);
+    io.emit(req.body.event, req.body.data);
     res.send(req.body);    // echo the result back
 });
 
@@ -35,7 +35,7 @@ const io = require('socket.io')(server, {
 });
 
 const redis = require('socket.io-redis');
-io.adapter(redis({host: '10.1.0.2', port: 6379}));
+io.adapter(redis({host: 'socket-hel1-1.own3d.dev', port: 6379}));
 
 io.on('connection', (socket) => {
     console.log('a user connected');
