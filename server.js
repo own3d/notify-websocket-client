@@ -6,16 +6,17 @@ const basicAuth = require('express-basic-auth');
 const bodyParser = require('body-parser');
 
 app.use(bodyParser.json());
-app.use(basicAuth({
+
+const auth = basicAuth({
     users: {'own3d-socket': process.env.AUTH_PASSWORD},
-}))
+});
 
 // Health check
 app.head('/health', function (req, res) {
     res.sendStatus(200);
 });
 
-app.post('/emit', (req, res) => {
+app.post('/emit', auth, (req, res) => {
     console.log(req.body);      // your JSON
     io.emit(res.body.event, req.body.data);
     res.send(req.body);    // echo the result back
