@@ -35,7 +35,7 @@ const io = require('socket.io')(server, {
 });
 
 const redis = require('socket.io-redis');
-io.adapter(redis({host: 'socket-hel1-1.own3d.dev', port: 6379}));
+io.adapter(redis({host: '10.1.0.2', port: 6379}));
 
 io.on('connection', (socket) => {
     console.log('a user connected');
