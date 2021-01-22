@@ -18,7 +18,7 @@ app.head('/health', function (req, res) {
 
 app.post('/emit', auth, (req, res) => {
     console.log(req.body);      // your JSON
-    io.room(req.body.room).emit(req.body.event, req.body.data);
+    io.in(req.body.room).emit(req.body.event, req.body.data);
     res.send(req.body);    // echo the result back
 });
 
