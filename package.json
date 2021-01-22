@@ -23,7 +23,9 @@
   },
   "dependencies": {
     "body-parser": "^1.19.0",
+    "dotenv": "^8.2.0",
     "express": "^4.17.1",
+    "express-basic-auth": "^1.2.0",
     "php-serialize": "^4.0.2",
     "socket.io": "^3.1.0",
     "socket.io-client": "^3.1.0",

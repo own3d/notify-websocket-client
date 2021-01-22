@@ -1,17 +1,23 @@
+require('dotenv').config();
+
 const express = require('express');
 const app = express();
+const basicAuth = require('express-basic-auth');
 const bodyParser = require('body-parser');
 
 app.use(bodyParser.json());
+app.use(basicAuth({
+    users: {'own3d-socket': process.env.AUTH_PASSWORD},
+}))
 
 // Health check
 app.head('/health', function (req, res) {
     res.sendStatus(200);
 });
 
-app.post('/send', (req, res) => {
+app.post('/emit', (req, res) => {
     console.log(req.body);      // your JSON
-    io.emit('hi', req.body);
+    io.emit(res.body.event, req.body.data);
     res.send(req.body);    // echo the result back
 });
 
@@ -28,7 +34,7 @@ const io = require('socket.io')(server, {
 });
 
 const redis = require('socket.io-redis');
-io.adapter(redis({ host: '10.1.0.2', port: 6379 }));
+io.adapter(redis({host: '10.1.0.2', port: 6379}));
 
 io.on('connection', (socket) => {
     console.log('a user connected');
